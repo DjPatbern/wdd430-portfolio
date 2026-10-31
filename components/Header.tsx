@@ -8,7 +8,7 @@ export default function Header({ activePage }: HeaderProps) {
   const linkClass =
     "rounded-full px-4 py-2 transition focus-visible:outline-2 focus-visible:outline-violet-700";
   const inactiveClass =
-    "text-slate-600 hover:bg-violet-50 hover:text-violet-800";
+    "text-slate-600 hover:text-violet-800";
   const activeClass = "bg-violet-100 font-semibold text-violet-900";
 
   return (
