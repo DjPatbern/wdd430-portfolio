@@ -1,6 +1,16 @@
 import Link from "next/link";
 
-export default function Header() {
+interface HeaderProps {
+  activePage: "home" | "about";
+}
+
+export default function Header({ activePage }: HeaderProps) {
+  const linkClass =
+    "rounded-full px-4 py-2 transition focus-visible:outline-2 focus-visible:outline-violet-700";
+  const inactiveClass =
+    "text-slate-600 hover:bg-violet-50 hover:text-violet-800";
+  const activeClass = "bg-violet-100 font-semibold text-violet-900";
+
   return (
     <header className="border-b border-violet-100 bg-white/90 backdrop-blur">
       <nav
@@ -13,11 +23,12 @@ export default function Header() {
           </span>
           <span className="text-lg font-semibold tracking-tight">Portfolio</span>
         </Link>
-        <ul className="flex items-center gap-2 text-sm font-medium text-slate-600 sm:gap-3">
+        <ul className="flex items-center gap-2 text-sm font-medium sm:gap-3">
           <li>
             <Link
               href="/"
-              className="rounded-full px-4 py-2 transition hover:bg-violet-50 hover:text-violet-800 focus-visible:outline-2 focus-visible:outline-violet-700"
+              aria-current={activePage === "home" ? "page" : undefined}
+              className={`${linkClass} ${activePage === "home" ? activeClass : inactiveClass}`}
             >
               Home
             </Link>
@@ -25,7 +36,8 @@ export default function Header() {
           <li>
             <Link
               href="/about"
-              className="rounded-full bg-violet-100 px-4 py-2 text-violet-800 transition hover:bg-violet-200 focus-visible:outline-2 focus-visible:outline-violet-700"
+              aria-current={activePage === "about" ? "page" : undefined}
+              className={`${linkClass} ${activePage === "about" ? activeClass : inactiveClass}`}
             >
               About
             </Link>
